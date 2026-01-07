@@ -88,4 +88,4 @@ The .NET library and .NET app are providing a JSON-Configuration file each:
 Please refer to the [Link](https://github.com/Ini-D/CfgComparer/blob/main/THIRD-PARTY-NOTICES.TXT)
 
 ## References
-Sören Taube, Automatischer Abgleich und Bewertung von Programmablaufplänen, Hochschule Merseburg, 2025, DOI: https://dx.doi.org/10.25673/118224
+Sören Taube, Automatischer Abgleich und Bewertung von Programmablaufplänen, Bachelorarbeit, Hochschule Merseburg, 2025, DOI: https://dx.doi.org/10.25673/118224
