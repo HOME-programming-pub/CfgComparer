@@ -25,11 +25,16 @@ public class Node : IComparable<Node> {     //IComparable just to allow internal
     [DataMember(Order = 6)]
     private List<Node> Successors = [];
 
-    public Node(int id, List<string> label = null, List<Node> predecessors = null, List<Node> successors = null) {
+    [DataMember(Order = 7)]
+    public ShapeProperties Shape { get; set; }
+
+    public Node(int id, List<string> label = null, List<Node> predecessors = null, List<Node> successors = null, ShapeProperties shape = null)
+    {
         Id = id;
         if (label != null) Label = label;
         predecessors?.ForEach(predec => AddPredecessor(predec));
         successors?.ForEach(succs => AddSuccessor(succs));
+        Shape = shape;
     }
     public Node GetSuccessor(int id) {
         Node foundNode = Successors.Find(succ => succ.Id == id);
