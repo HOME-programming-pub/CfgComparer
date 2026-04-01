@@ -40,15 +40,33 @@ namespace CfgCompLib {
             {
                 idMapping.Add(vertex.GetAttribute("id"), graphId);  //provide new IDs for nodes
 
+                // For some reason, a shape Note can have multiple child Nodes and we do not know which one is the mxGeometry Node
+                // Therefore, we need to iterate through all child nodes and check for the name "mxGeometry" to extract the shape properties
+                XmlNode attributeNode = null;
+                foreach (XmlNode attributeNodes in vertex.ChildNodes)
+                {
+                    if(attributeNodes.Name.Equals("mxGeometry")) { attributeNode = attributeNodes; break; }
+                }
+                if (attributeNode == null) { throw new Exception("Incorrect format for a draw.io XML-schema"); }
+
                 // Extracts the Node Position and Size properties
-                int x = int.Parse(Regex.Match(vertex.InnerXml, @"x\s?=\s?""(\d+)""").Groups[1].Value);
-                int y = int.Parse(Regex.Match(vertex.InnerXml, @"y\s?=\s?""(\d+)""").Groups[1].Value);
-                int width = int.Parse(Regex.Match(vertex.InnerXml, @"width\s?=\s?""(\d+)""").Groups[1].Value);
-                int height = int.Parse(Regex.Match(vertex.InnerXml, @"height\s?=\s?""(\d+)""").Groups[1].Value);
+                int x = 0;
+                int y = 0;
+                int width = 0;
+                int height = 0;
+                foreach (XmlNode attribute in attributeNode.Attributes)
+                {
+                    switch (attribute.Name)
+                    {
+                        case "x": x = int.Parse(attribute.Value); break;
+                        case "y": y = int.Parse(attribute.Value); break;
+                        case "width": width = int.Parse(attribute.Value); break;
+                        case "height": height = int.Parse(attribute.Value); break;
 
-                // Extracts the 
+                    }
+                }
 
-                graph.AddNode(new Node(graphId, PrepareLabel(vertex.GetAttribute("value")), null, null, new ShapeProperties(x, y, width, height, Shape.Start))); //get label content
+                graph.AddNode(new Node(graphId, PrepareLabel(vertex.GetAttribute("value")), null, null, new ShapeProperties(x, y, width, height, Shape.Action))); //get label content
                 graphId++;
             }
             ;
