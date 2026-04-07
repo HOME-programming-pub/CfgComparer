@@ -12,14 +12,16 @@ namespace CfgCompLib.classes
         public float width;
         public float height;
         public Shape shape;
+        public bool selected;
 
-        public ShapeProperties(float x, float y, float width, float height, Shape shape)
+        public ShapeProperties(float x, float y, float width, float height, Shape shape, bool selected)
         {
             this.x = x;
             this.y = y;
             this.width = width;
             this.height = height;
             this.shape = shape;
+            this.selected = selected;
         }
     }
 }
