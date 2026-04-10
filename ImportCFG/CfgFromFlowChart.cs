@@ -66,7 +66,7 @@ namespace CfgCompLib {
                     }
                 }
 
-                graph.AddNode(new Node(graphId, PrepareLabel(vertex.GetAttribute("value")), null, null, new ShapeProperties(x, y, width, height, Shape.Action))); //get label content
+                graph.AddNode(new Node(graphId, PrepareLabel(vertex.GetAttribute("value")), null, null, new ShapeProperties(x, y, width, height, Shape.Action, false))); //get label content
                 graphId++;
             }
             ;
