@@ -101,6 +101,17 @@ namespace CfgCompLib.classes {
             if(AdjacencyList.Count != 0) return AdjacencyList.Keys.Max();
             return 0;
         }
+
+        public int GetNewID()
+        {
+            int id = 0;
+            for (; ; )
+            {
+                if(this.GetNode(id) == null) { return id; }
+                id++;
+            }
+        }
+
         public Dictionary<Node, int> ComputeShortestPaths(Node startNode) { //bfs traversal and add one level-wise
 
             var queue = new Queue<Node>();
